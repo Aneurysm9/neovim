@@ -6,7 +6,7 @@
       relativenumber = true;
 
       autoindent = true;
-      autowrite = true;
+      #autowrite = true;
       confirm = true;
       clipboard = "unnamedplus";
       cursorline = true;
