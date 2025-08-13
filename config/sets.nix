@@ -36,10 +36,10 @@
 
     harpoon = {
       enable = true;
-      saveOnToggle = true;
-      saveOnChange = true;
-      enterOnSendcmd = false;
-      markBranch = true;
+      #  saveOnToggle = true;
+      #  saveOnChange = true;
+      #  enterOnSendcmd = false;
+      #  markBranch = true;
     };
 
     hop.enable = true;
