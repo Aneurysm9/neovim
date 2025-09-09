@@ -241,7 +241,7 @@ in
         servers = {
           jsonls.enable = true;
           marksman.enable = true;
-          nil-ls.enable = true;
+          nil_ls.enable = true;
           nixd.enable = true;
           yamlls.enable = true;
           taplo.enable = true;
@@ -250,9 +250,6 @@ in
 
       trouble = {
         enable = true;
-        settings = {
-          use_diagnostic_signs = true;
-        };
       };
     };
   }
