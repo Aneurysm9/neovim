@@ -232,11 +232,22 @@ in
           )
         '';
         postConfig = ''
-          local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-          for type, icon in pairs(signs) do
+          local levels = { ERROR = " ", WARN = " ", HINT = " ", INFO = " " }
+          local severity = vim.diagnostic.severity
+          local signs = {
+                text = {},
+                linehl = {},
+                numhl = {},
+            }
+
+          for type, icon in pairs(levels) do
             local hl = "DiagnosticSign" .. type
-            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+            signs.text[severity[type]] = icon
+            signs.linehl[severity[type]] = ""
+            signs.numhl[severity[type]] = hl
           end
+
+          vim.diagnostic.config({ signs = signs })
         '';
         servers = {
           jsonls.enable = true;
