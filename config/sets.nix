@@ -66,8 +66,9 @@
     notify.enable = true;
     nvim-autopairs.enable = true;
     colorizer.enable = true;
+    nvim-tree.enable = true;
     oil = {
-      enable = true;
+      enable = false;
       settings = {
         columns = [
           "icons"

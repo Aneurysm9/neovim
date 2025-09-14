@@ -60,7 +60,7 @@
         {
           __unkeyed-1 = "<leader>e";
           icon = "󰏇";
-          desc = "Oil";
+          desc = "nvim-tree";
         }
         {
           __unkeyed-1 = "<leader>/";
@@ -201,8 +201,8 @@
     {
       mode = "n";
       key = "<leader>e";
-      action = "<CMD>Oil<CR>";
-      options.desc = "Oil";
+      action = "<CMD>NvimTreeToggle<CR>";
+      options.desc = "nvim-tree";
     }
 
     # Hop command
