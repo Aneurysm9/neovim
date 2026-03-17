@@ -89,6 +89,13 @@
           };
           extraSpecialArgs = {};
         };
+        minimalNixvimModule = {
+          inherit pkgs;
+          module = {pkgs, ...}: {
+            imports = [./config/minimal];
+          };
+          extraSpecialArgs = {};
+        };
         pkgs = import inputs.nixpkgs {
           inherit system overlays;
           config.allowUnfree = true;
@@ -99,6 +106,7 @@
         goNvim = nixvim'.makeNixvimWithModule goNixvimModule;
         pythonNvim = nixvim'.makeNixvimWithModule pythonNixvimModule;
         javascriptNvim = nixvim'.makeNixvimWithModule javascriptNixvimModule;
+        minimalNvim = nixvim'.makeNixvimWithModule minimalNixvimModule;
       in {
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
@@ -117,6 +125,8 @@
           python = pythonNvim;
           # Lets you run `nix run .#javascript` to start nixvim with JS/TS configuration
           javascript = javascriptNvim;
+          # Lets you run `nix run .#minimal` to start nixvim without language tooling
+          minimal = minimalNvim;
         };
       };
     };
