@@ -19,6 +19,9 @@ nix run .#golang
 nix run .#csharp
 nix run .#javascript
 
+# Run the minimal (no language tooling) configuration
+nix run .#minimal
+
 # Validate configuration integrity
 nix flake check .
 
@@ -32,10 +35,11 @@ There are no tests, linters, or build steps beyond `nix flake check .`.
 
 ### Flake Structure
 
-`flake.nix` defines 6 package outputs, each composing the base config with optional language modules:
+`flake.nix` defines 7 package outputs, each composing the base config with optional language modules:
 
 - **default** — `./config` only (editors, UI, base LSP for Nix/JSON/YAML/Markdown/TOML)
 - **rust/python/golang/csharp/javascript** — `./config` + `./config/{language}/`
+- **minimal** — `./config/minimal` only (no LSP, completion, DAP, formatters, or heavy tooling)
 
 Each output uses `nixvim.makeNixvimWithModule` to produce a standalone Neovim binary with all plugins and tools bundled via Nix.
 
@@ -45,6 +49,7 @@ Each output uses `nixvim.makeNixvimWithModule` to produce a standalone Neovim bi
 
 - **Adding a new `.nix` file to `config/` automatically includes it** — no manual import needed.
 - **Language directories are NOT auto-imported by the base config.** They are explicitly imported in `flake.nix` per-output.
+- **`config/minimal/` is an independent entry point** — it selectively imports shared files (`options.nix`, `themes.nix`, `find.nix`) and provides its own `sets.nix` and `keys.nix`.
 
 ### Key Config Files
 
@@ -59,6 +64,8 @@ Each output uses `nixvim.makeNixvimWithModule` to produce a standalone Neovim bi
 | `config/dashboard.nix` | Alpha startup dashboard |
 | `config/themes.nix` | Colorscheme (onedark) |
 | `config/plugins.nix` | Extra plugins (vim-dadbod for databases) |
+| `config/agentic.nix` | AI chat sidebar (agentic.nvim) |
+| `config/transparent.nix` | Background transparency for terminal |
 
 ### Language Module Pattern
 
