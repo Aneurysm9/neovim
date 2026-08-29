@@ -2,6 +2,12 @@
   description = "A nixvim configuration";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # Deliberately NOT `inputs.nixpkgs.follows = "nixpkgs"`. nixvim is tested
+    # against the nixpkgs it pins, and forcing a different one turns a clean
+    # version complaint into obscure module-level breakage. Keeping its pin
+    # means the fix for a release-boundary mismatch is to bump this input,
+    # which is a visible, revertible action.
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
     rust-overlay.url = "github:oxalica/rust-overlay";
